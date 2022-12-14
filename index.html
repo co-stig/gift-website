@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"></script>
+        <title>Giulia's life</title>
+        <style>
+            img {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+            }
+            .map {
+                z-index: 1;
+            }
+            .bubble {
+                z-index: 3;
+                display: none;
+            }        
+            .mask {
+                position: absolute;
+                top: -5px;
+                left: 528px;
+                width: 570px;
+                z-index: 5; 
+                height: 570px;
+                -webkit-mask-image: url(bubble-mask.png);
+                mask-image: url(bubble-mask.png);
+                -webkit-mask-size: 570px;
+                mask-size: 570px;
+                -webkit-mask-repeat: no-repeat;
+                mask-repeat: no-repeat;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="giulia.jpg" usemap="#image-map" class="map">
+        <img src="bubble.png" class="bubble" onclick="hide()">
+        <map name="image-map">
+            <area target="_self" alt="Music" title="Music" href="#" coords="42,968,55,903,82,854,113,830,147,827,172,835,195,851,222,883,239,919,250,961,257,1002,172,1012,103,1009,48,991" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="iPhone" title="iPhone" href="#" coords="738,825,783,792,801,803,758,837" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Giulia" title="Giulia" href="#" coords="669,639,702,652,717,687,695,741,687,763,694,782,719,806,731,834,748,848,772,866,801,855,821,845,899,872,910,890,914,995,919,1088,883,1090,889,1049,885,988,869,941,848,930,807,947,758,965,674,968,666,917,649,875,626,811,591,775,609,739,616,681,626,645,645,639" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Screen" title="Screen" href="#" coords="929,642,924,763,1008,790,1009,745,1016,725,1025,715,1029,653" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Lamp" title="Lamp" href="#" coords="869,189,871,155,889,123,899,113,899,51,920,38,940,37,950,47,953,112,970,120,982,143,985,172,985,184,958,196,910,201,882,198" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Aircon" title="Aircon" href="#" coords="1045,246,1059,232,1060,205,1066,170,1088,136,1127,110,1177,82,1331,6,1457,1,1471,11,1292,90,1114,171,1104,189,1110,232,1125,239,1095,252,1069,253" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Phone" title="Phone" href="#" coords="1047,816,1087,840,1143,825,1148,796,1122,784,1127,769,1102,770,1063,796" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Soft thingy" title="Soft thingy" href="#" coords="308,821,376,816,427,823,442,844,445,879,433,903,423,916,448,931,452,960,444,999,427,1019,387,1032,353,1037,352,878,329,854,315,842,293,864,276,900,269,920,254,865,269,837,284,825" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Bottle" title="Bottle" href="#" coords="1030,724,1037,748,1039,773,1039,810,1028,818,1009,813,1012,743,1019,728" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Chair" title="Chair" href="#" coords="543,756,536,765,547,803,566,848,584,852,588,875,584,936,586,972,660,1013,682,1011,683,1035,685,1080,586,1136,584,1177,610,1177,611,1148,690,1102,711,1105,775,1160,783,1146,730,1090,827,1093,833,1114,853,1115,857,1100,839,1073,724,1064,714,1011,721,999,776,991,826,987,829,967,799,960,765,968,673,972,669,958,661,914,625,817,587,773" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Lunch" title="Lunch" href="#" coords="820,777,820,806,842,818,879,818,902,811,902,779,873,765,838,772" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Printer" title="Printer" href="#" coords="1255,759,1242,821,1255,883,1255,920,1361,957,1419,948,1553,923,1558,885,1566,835,1551,779,1525,758,1418,742" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Papers" title="Papers" href="#" coords="1016,875,1008,978,1083,1011,1196,994,1104,950,1233,916,1234,879,1162,844" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Whiteboard" title="Whiteboard" href="#" coords="213,527,235,859,253,866,280,823,322,808,379,808,437,814,449,834,452,879,441,902,433,910,449,929,457,950,457,968,479,950,488,886,512,847,530,834,539,827,516,522,369,522" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Window" title="Window" href="#" coords="59,130,92,526,678,514,663,155" shape="poly" onclick="hl(this)">
+            <area target="_self" alt="Neighbors" title="Neighbors" href="#" coords="1599,209,1494,237,1493,609,1597,613" shape="poly" onclick="hl(this)">
+        </map>
+        <script>
+            const mapping = {
+                'Music': 'FFISTo759LTVu',
+                'iPhone': 'cfuL5gqFDreXxkWQ4o',
+                'Giulia': 'SSEn4isK0v5hCscQ7Q',
+                'Screen': '8c9NInMpXixMjR6lTH',
+                'Lamp': 'ctGFLebG1AqK4',
+                'Aircon': 'J0ltcPgSQJaTmZiNwM',
+                'Phone': 'yPhqlJccIOaru',
+                'Soft thingy': '1jYxrchPSkje7NexO6',
+                'Bottle': 'l3q2CwdGMEeqdZbQk',
+                'Chair': 'S9jIAwgTtISJZKZ3oS',
+                'Lunch': 'uvjaQaqT8kBDvrDfQm',
+                'Printer': 'i6byPYKcsNlKZYFOPw',
+                'Whiteboard': 'd31vTpVi1LAcDvdm',
+                'Window': 'u6j0yWYHvDZqMCAgd5',
+                'Neighbors': 'U4DswrBiaz0p67ZweH',
+            };
+            function hide() {
+                $(".bubble").hide(100);
+                $(".mask").hide(100);
+            }
+            function hl(el) {
+                let cx = 0, cy = 0;
+                const coords = el.coords.split(',');
+                coords.forEach((el, index) => {
+                    if (index % 2 == 0) {
+                        cx += parseInt(el);
+                    } else {
+                        cy += parseInt(el);
+                    }
+                });
+                cx /= coords.length / 2;
+                cy /= coords.length / 2;
+                const src = 'https://media2.giphy.com/media/' + mapping[el.title] + '/giphy.gif';
+                console.log(el.title, cx, cy, src);
+                $(".gif").attr('src', src);
+                $(".bubble").show(100);
+                $(".mask").show(100);
+            }
+            $(function() {
+                $('.map').maphilight();
+            });
+        </script>
+        <div class="mask" onclick="hide()">
+            <img 
+                src="" 
+                style="z-index: 5; width: 570px; height: 570px;" onclick="hide()" class="gif" />
+        </div>
+    </body>
+</html>
